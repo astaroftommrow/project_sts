@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/default_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+function popupClose(form) {
+    // form의 target을 부모 창으로 설정함            
+    form.target = opener.insertCheck.do;
+    
+    form.submit();
+    
+    if (opener != null) {
+        opener.insertemp = null;
+        
+        self.close();
+    }
+}
+</script>
+</head>
+<body>
+	<div>
+		<form action="">
+			<table>
+			
+			</table>
+		</form>	
+		<form name="writeform" action="Insertemp.html" target="insertCheck.do">
+        <input type="submit" value="확인" onclick="window.close()" >
+        <input type="button" value="창 닫기" onclick="window.close()">
+
+	</div>
+</body>
+</html>
+

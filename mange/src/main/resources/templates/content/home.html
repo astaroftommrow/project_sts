@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/default_layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+//수정버튼 알림창
+function updateCheck() {
+	var obj = jQuery("#searchForm").serialize();
+	 if (confirm("수정하겠습니까?")){    //확인
+		$.ajax({ 
+			  url:'/home/list/update'
+			, type:"GET"
+			, data: obj
+			, success: function(result) { 
+			} 
+		 });
+		 alert("수정되었습니다");
+	     //document.removefrm.submit();
+	 }else{   //취소
+		 alert("취소되었습니다");
+
+	     return false;
+	 }
+}
+
+//삭제버튼 알림창
+function deleteCheck() {
+	var obj = jQuery("#searchForm").serialize();
+	 if (confirm("삭제하겠습니까?") == true){    //확인
+			$.ajax({ 
+				  url:'/home/list/delete'
+				, type:"GET"
+				, data: obj
+				, success: function(result) { 
+				} 
+			 });
+		alert("삭제되었습니다");
+		return false;
+		// document.removefrm.submit();
+	    // histroy.go(-2);
+
+
+	 }else{   //취소
+		 alert("취소되었습니다");
+	     return false;
+	 }
+}
+
+// 로그인 팝업창 연결
+function insertPopup() {
+    // window.name = "부모창 이름";            
+    window.name = "insertCheck.do";
+    
+    // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
+    window.open("insertEmp.html", "insert",
+            "width = 450, height = 320, resizable = no, scrollbars = no, status = no");
+}
+
+</script>
+</head>
+<body>
+<table>
+<del>
+	<div>
+		<form action="/home/dept">
+			<table border="2" align="center">
+				<tr>
+	 				<form action="/home/dept">
+	 					<td bgcolor="lightblue" width="300" align="center">
+	 						<button>조 직 도</button>
+	 					</td>
+	 				</form>
+	 				<form action="/home" name="filename">
+	 					<td bgcolor="lightblue" width="300" align="center">
+	 						<button>
+	 						사 원 검 색</button>
+	 					</td>
+	 				</form>
+	 				</tr>
+				 </table>
+			 </form>
+		</div>
+	 <div>
+	 	<form action="/home/search">
+	 		<table border="2" align="center">
+	 			<tr>
+	 				<td>이름</td>
+	 				<td><input name="EMP_NM"></td>
+	 				<td><input type="submit"></td>
+	 			</tr>
+	 		</table>
+	 	</form>
+	 	
+		<table border="2" align="center">
+			<tr>
+				<td>
+	 				<table border="1" align="center">
+	 				<tr>
+	 					<td>id</td>
+	 					<td>이름</td>
+	 					<td>이메일</td>
+	 					<td>주소</td>
+	 					<td>편집</td>
+	 				</tr>
+	 				<tr th:each="employee : ${empVOList}">
+	 					<td th:text="${employee.EMP_ID}"></td>
+	 					<td th:text="${employee.EMP_NM}"></td>
+	 					<td th:text="${employee.EMP_EML}"></td>
+	 					<td th:text="${employee.EMP_ADDR}"></td>
+	 					<td>
+	 						<button class="btn01" onclick="document.getElementById('searchList').style.display=(document.getElementById('searchList').style.display=='block') ? 'none' : 'block';">
+	 						수정/삭제</button>
+	 					</td>
+	 				</tr>
+	 				</table>
+				</td>
+	 			<td>
+	 			<div id="searchList" class="search02" style="display: none;">
+	 				<table>
+	 				<!-- <form action="/home/list/update" method="post"> -->
+	 				<form id="searchForm">
+	 					<table th:each="employee : ${empVOList}">
+	 						<tr>
+	 							<td bgcolor="lightblue">ID</td>
+	 							<td>
+	 							<input id="EMP_ID" type="text" name="EMP_ID" th:value = "${employee.EMP_ID}" size="50" /></td>
+	 						</tr>
+	 						<tr>
+	 							<td bgcolor="lightblue">사원명</td>
+	 							<td> <input id="EMP_NM" type="text" name="EMP_NM" th:value = "${employee.EMP_NM}"></td>
+	 						</tr>
+	 						<tr>
+	 							<td bgcolor="lightblue">부서명</td>
+	 							<td>
+	 							<input id="DEPT_NM" type="text" name="DEPT_NM" th:value ="${employee.DEPT_NM}"></td>
+	 						</tr>
+	 						<tr>
+	 							<td bgcolor="lightblue">직급</td>
+	 							<td>
+	 							<input id="EMP_JBGD" type="text" name="EMP_JBGD" th:value ="${employee.EMP_JBGD}"></td>
+	 						</tr>
+	 						<tr>
+	 							<td bgcolor="lightblue">전화번호</td>
+	 							<td>
+	 							<input id="EMP_TELNO" type="text" name="EMP_TELNO" th:value="${employee.EMP_TELNO}"> </td>
+	 						</tr>
+	 						<tr>
+	 							<td bgcolor="lightblue">주소</td>
+	 							<td>
+	 							<input id="EMP_ADDR" type="text" name="EMP_ADDR" th:value="${employee.EMP_ADDR}"> </td>
+	 						</tr>
+	 						<tr>
+	 							<table>
+	 							<tr>
+	 							<td bgcolor="lightblue">취미</td>
+	 							<td ><input type="checkbox" name="HB_NM">러닝</td>
+	 							<td ><input type="checkbox" name="HB_NM">헬스</td>
+	 							<td ><input type="checkbox" name="HB_NM">등산</td>
+	 							<td ><input type="checkbox" name="HB_NM">클라이밍</td>
+	 							</tr>
+	 							<tr>
+	 							<td></td>
+	 							<td ><input type="checkbox" name="HB_NM">복싱</td>
+	 							<td ><input type="checkbox" name="HB_NM">폴댄스</td>
+	 							<td ><input type="checkbox" name="HB_NM">크로스핏</td>
+	 							<td ><input type="checkbox" name="HB_NM">펜싱</td>
+	 							<td ><input type="checkbox" name="HB_NM">검도</td>
+	 							</tr>
+	 							<tr>
+	 								<table>
+	 								<tr>
+	 									<td><button onclick="insertPopup()">신규가입</button></td>
+	 									<td><button onclick="updateCheck()">수정</button></td>
+	 									<td><button onclick="deleteCheck()">삭제</button></td>
+	 								</tr>
+	 								</table>
+	 							</tr>
+	 							</table>
+	 						</tr>
+	 					</table>
+	 				</table>
+	 				</form>
+	 			</div>
+	 			</td>
+	 		</tr>
+		</table>
+ 	</div>
+ </del>
+ 
+</body>
+</html>
