@@ -16,7 +16,8 @@ public class EmpVO {
 	private String EMP_EML;
 	private String EMP_TELNO;
 	private String EMP_ADDR;
-
+	private String HB_ID;
+	private String HB_NM;
 	
 	
 }

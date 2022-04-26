@@ -51,15 +51,7 @@ function deleteCheck() {
 	 }
 }
 
-// 로그인 팝업창 연결
-function insertPopup() {
-    // window.name = "부모창 이름";            
-    window.name = "insertCheck.do";
-    
-    // window.open("자식창 이름", "불러올 자식 창의 닉네임", "팝업창 옵션");
-    window.open("insertEmp.html", "insert",
-            "width = 450, height = 320, resizable = no, scrollbars = no, status = no");
-}
+
 
 </script>
 </head>
@@ -158,18 +150,18 @@ function insertPopup() {
 	 							<table>
 	 							<tr>
 	 							<td bgcolor="lightblue">취미</td>
-	 							<td ><input type="checkbox" name="HB_NM">러닝</td>
-	 							<td ><input type="checkbox" name="HB_NM">헬스</td>
-	 							<td ><input type="checkbox" name="HB_NM">등산</td>
-	 							<td ><input type="checkbox" name="HB_NM">클라이밍</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}" >러닝</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">헬스</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">등산</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">클라이밍</td>
 	 							</tr>
 	 							<tr>
 	 							<td></td>
-	 							<td ><input type="checkbox" name="HB_NM">복싱</td>
-	 							<td ><input type="checkbox" name="HB_NM">폴댄스</td>
-	 							<td ><input type="checkbox" name="HB_NM">크로스핏</td>
-	 							<td ><input type="checkbox" name="HB_NM">펜싱</td>
-	 							<td ><input type="checkbox" name="HB_NM">검도</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">복싱</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">폴댄스</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">크로스핏</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">펜싱</td>
+	 							<td ><input type="checkbox" name="HB_NM" th:checked="${employee.HB_ID}">검도</td>
 	 							</tr>
 	 							<tr>
 	 								<table>

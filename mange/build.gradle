@@ -16,6 +16,11 @@ configurations {
 
 repositories {
 	mavenCentral()
+	
+}
+
+bootBuildImage {
+	imageName = "mange"
 }
 
 dependencies {
@@ -36,6 +41,4 @@ tasks.named('test') {
 }
 
 
-bootBuildImage {
-imageName = "${project.name}"
-}
+
