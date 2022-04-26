@@ -1,10 +1,12 @@
 package com.manage.entity;
 
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import lombok.Builder;
 import lombok.Data;
 
-
+@EnableAutoConfiguration
 @Data @Builder
 public class EmpVO {
 	
