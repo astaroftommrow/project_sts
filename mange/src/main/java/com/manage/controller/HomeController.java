@@ -16,8 +16,10 @@ import com.manage.dao.EmpDAO;
 import com.manage.entity.EmpVO;
 import com.manage.service.EmpService;
 
+import lombok.RequiredArgsConstructor;
 
-@Controller
+
+@Controller @RequiredArgsConstructor
 public class HomeController {
 	
 	@Autowired
